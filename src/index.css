@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   THÈME DARK (défaut) — Navy + Bleu
+═══════════════════════════════════════ */
+:root, [data-theme="dark"] {
+  --bg-base:       #060c1a;
+  --bg-card:       #0d1b3e;
+  --bg-card2:      #0a0f1e;
+  --bg-hover:      rgba(37,99,235,0.08);
+  --border:        rgba(37,99,235,0.2);
+  --border-hover:  rgba(37,99,235,0.5);
+
+  --accent:        #2563eb;
+  --accent-light:  #60a5fa;
+  --accent-hover:  #3b82f6;
+  --accent2:       #4f46e5;
+
+  --text-h:        #ffffff;
+  --text-body:     #94a3b8;
+  --text-muted:    #475569;
+  --text-tag:      #60a5fa;
+
+  --glow:          0 0 40px rgba(37,99,235,0.3);
+  --glow-sm:       0 0 20px rgba(37,99,235,0.2);
+  --grad-accent:   linear-gradient(135deg, #60a5fa 0%, #2563eb 50%, #818cf8 100%);
+  --grad-card:     linear-gradient(135deg, #0d1b3e, #0a0f1e);
+  --separator:     rgba(37,99,235,0.3);
+}
+
+/* ═══════════════════════════════════════
+   THÈME LIGHT — Blanc + Saumon + Olive
+═══════════════════════════════════════ */
+[data-theme="light"] {
+  --bg-base:       #FAF7F4;
+  --bg-card:       #FFFFFF;
+  --bg-card2:      #F3EDE8;
+  --bg-hover:      rgba(208,106,80,0.07);
+  --border:        rgba(208,106,80,0.25);
+  --border-hover:  rgba(208,106,80,0.55);
+
+  --accent:        #D06A50;   /* saumon */
+  --accent-light:  #E8937A;
+  --accent-hover:  #C05540;
+  --accent2:       #6B7C4A;   /* olive vert */
+
+  --text-h:        #1C1A17;
+  --text-body:     #5C5347;
+  --text-muted:    #9C8E84;
+  --text-tag:      #D06A50;
+
+  --glow:          0 0 40px rgba(208,106,80,0.20);
+  --glow-sm:       0 0 20px rgba(208,106,80,0.15);
+  --grad-accent:   linear-gradient(135deg, #E8937A 0%, #D06A50 50%, #6B7C4A 100%);
+  --grad-card:     linear-gradient(135deg, #FFFFFF, #F3EDE8);
+  --separator:     rgba(208,106,80,0.25);
+}
+
+/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-body);
+  margin: 0;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-h);
+}
+
+#root { width: 100%; min-height: 100vh; }
+
+/* Utilitaires */
+.t-accent   { color: var(--accent); }
+.t-accent2  { color: var(--accent2); }
+.t-h        { color: var(--text-h); }
+.t-body     { color: var(--text-body); }
+.t-muted    { color: var(--text-muted); }
+.t-tag      { color: var(--text-tag); }
+
+.bg-base    { background-color: var(--bg-base); }
+.bg-card    { background: var(--grad-card); }
+.card       { background: var(--grad-card); border: 1px solid var(--border); }
+.card:hover { border-color: var(--border-hover); background-color: var(--bg-hover); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: all 0.2s;
+  box-shadow: var(--glow-sm);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+
+.btn-outline {
+  border: 1px solid var(--border-hover);
+  color: var(--text-body);
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.grad-text {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-sep {
+  border-top: 1px solid transparent;
+  background: linear-gradient(to right, transparent, var(--separator), transparent) border-box;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* Transition globale sur changement de thème */
+*, *::before, *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.25s ease;
+}
