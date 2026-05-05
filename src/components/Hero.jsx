@@ -98,7 +98,7 @@ export default function Hero() {
               <div className="flex items-center gap-4 mb-8 p-4 rounded-xl bg-white/5 border border-white/10">
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl overflow-hidden flex-shrink-0 glow-blue-sm">
                   <img
-                    src="/franck.jpg"
+                    src={`${import.meta.env.BASE_URL}franck.jpg`}
                     alt="Franck Jérémie Gori"
                     className="w-full h-full object-cover object-top"
                     onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement.innerText = 'FG' }}

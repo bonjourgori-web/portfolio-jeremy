@@ -32,7 +32,7 @@ export default function About() {
             <div className="relative w-72 md:w-80">
               <div className="absolute -inset-3 rounded-2xl blur-xl"
                 style={{ background: 'linear-gradient(135deg, var(--accent), var(--accent2))', opacity: 0.25 }} />
-              <img src="/franck.jpg" alt="Franck Jérémie Gori"
+              <img src={`${import.meta.env.BASE_URL}franck.jpg`} alt="Franck Jérémie Gori"
                 onError={(e) => { e.currentTarget.parentElement.innerHTML = '<div style="width:100%;aspect-ratio:3/4;border-radius:16px;background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:4rem">👤</div>' }}
                 className="relative w-full rounded-2xl object-cover object-top shadow-2xl"
                 style={{ aspectRatio: '3/4', border: '1px solid var(--border)' }}
