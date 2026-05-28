@@ -85,7 +85,7 @@ export default function Hero() {
 
             <motion.p {...fadeUp(0.35)} className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
               Franck Jérémie Gori — Support systèmes, réseaux et cloud Azure.
-              Je construis aussi des applications complètes avec l'IA.
+              Je construis aussi des applications complètes avec Python, JavaScript et l'IA.
               Basé à San Pédro, Côte d'Ivoire.
             </motion.p>
 
