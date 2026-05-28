@@ -1,10 +1,40 @@
 import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import FloatingGeometry from './FloatingGeometry'
+import MagneticButton from './MagneticButton'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, delay, ease: 'easeOut' },
 })
+
+function ScrambleText({ text, className }) {
+  const [display, setDisplay] = useState(text)
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%'
+  const frameRef = useRef(null)
+
+  const scramble = () => {
+    let iter = 0
+    clearInterval(frameRef.current)
+    frameRef.current = setInterval(() => {
+      setDisplay(
+        text.split('').map((c, i) =>
+          i < iter ? c : c === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)]
+        ).join('')
+      )
+      iter += 0.5
+      if (iter >= text.length) clearInterval(frameRef.current)
+    }, 30)
+  }
+
+  useEffect(() => {
+    const t = setTimeout(scramble, 600)
+    return () => { clearTimeout(t); clearInterval(frameRef.current) }
+  }, [])
+
+  return <span className={className} onMouseEnter={scramble}>{display}</span>
+}
 
 const partners = ['Google IT', 'Microsoft Azure', 'IBM DevOps', 'Coursera']
 
@@ -19,7 +49,10 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20">
 
-      {/* Background */}
+      {/* 3D Floating Geometry */}
+      <FloatingGeometry />
+
+      {/* Background grid */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -46,8 +79,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1 {...fadeUp(0.2)} className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
-              Technicien IT{' '}
-              <span className="grad-blue block">& Vibe Coder</span>
+              <ScrambleText text="Technicien en informatique" className="block" />{' '}
+              <span className="grad-blue block">| Support IT & solutions numériques</span>
             </motion.h1>
 
             <motion.p {...fadeUp(0.35)} className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
@@ -57,14 +90,18 @@ export default function Hero() {
             </motion.p>
 
             <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-4 mb-12">
-              <a href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-sm transition-all duration-200 glow-blue">
+              <MagneticButton
+                href="#contact"
+                className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-sm transition-all duration-200 glow-blue"
+              >
                 Me recruter <span>→</span>
-              </a>
-              <a href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-blue-500/30 hover:border-blue-400 text-slate-300 hover:text-white font-semibold text-sm transition-all duration-200">
+              </MagneticButton>
+              <MagneticButton
+                href="#projects"
+                className="px-6 py-3 rounded-lg border border-blue-500/30 hover:border-blue-400 text-slate-300 hover:text-white font-semibold text-sm transition-all duration-200"
+              >
                 ▶ Voir mes projets
-              </a>
+              </MagneticButton>
             </motion.div>
 
             <motion.div {...fadeUp(0.55)}>
@@ -96,17 +133,23 @@ export default function Hero() {
 
               {/* Profile block avec photo */}
               <div className="flex items-center gap-4 mb-8 p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl overflow-hidden flex-shrink-0 glow-blue-sm">
+                <motion.div
+                  whileHover={{ scale: 2.5, zIndex: 50, boxShadow: '0 0 30px rgba(37,99,235,0.6)' }}
+                  whileTap={{ scale: 2.5, zIndex: 50 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl flex-shrink-0 glow-blue-sm cursor-zoom-in"
+                  style={{ originX: 0, originY: 0.5, position: 'relative', zIndex: 1 }}
+                >
                   <img
                     src={`${import.meta.env.BASE_URL}franck.jpg`}
                     alt="Franck Jérémie Gori"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top rounded-xl"
                     onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement.innerText = 'FG' }}
                   />
-                </div>
+                </motion.div>
                 <div>
                   <p className="text-white font-bold">Franck Jérémie Gori</p>
-                  <p className="text-blue-400 text-sm">Technicien IT · Vibe Coder</p>
+                  <p className="text-blue-400 text-sm">Technicien en informatique | Support IT & solutions numériques</p>
                   <div className="flex items-center gap-1.5 mt-1">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     <span className="text-green-400 text-xs">Disponible</span>

@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import TiltCard from './TiltCard'
 
 const projects = [
   { emoji:'🏗️', tag:'Web & Mobile',      name:'Plan2Iso3D',         desc:"Convertisseur de plans 2D (PDF/DXF/DWG) en rendus 3D isométriques 4K pour 30 villes de Côte d'Ivoire.", tech:['Python/FastAPI','React Native','Three.js','PostgreSQL','Azure'] },
@@ -34,8 +35,8 @@ export default function Projects() {
           {projects.map((p, i) => (
             <motion.div key={p.name}
               initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="group relative rounded-2xl p-7 hover:scale-[1.01] transition-all duration-300 card overflow-hidden">
+              transition={{ duration: 0.6, delay: i * 0.12 }}>
+            <TiltCard className="group relative rounded-2xl p-7 card overflow-hidden h-full">
               {/* Top accent bar */}
               <div className="absolute top-0 left-0 right-0 h-1 opacity-70 group-hover:opacity-100 transition-opacity"
                 style={{ background: 'var(--grad-accent)' }} />
@@ -61,6 +62,7 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
+            </TiltCard>
             </motion.div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import TiltCard from './TiltCard'
 
 const services = [
   { icon: '🖥️', title: 'Support IT & Maintenance',   desc: 'Dépannage matériel/logiciel Windows, support N1 & N2, gestion du parc informatique.', skills: ['Windows', 'Dépannage', 'Ticketing', 'Documentation'] },
@@ -34,8 +35,9 @@ export default function Skills() {
           {services.map((s, i) => (
             <motion.div key={s.title}
               initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative group rounded-2xl p-7 hover:scale-[1.02] transition-all duration-300 card"
+              transition={{ duration: 0.5, delay: i * 0.1 }}>
+            <TiltCard
+              className="relative group rounded-2xl p-7 card h-full"
               style={s.featured ? { boxShadow: 'var(--glow-sm)' } : {}}>
               {s.featured && (
                 <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
@@ -60,6 +62,7 @@ export default function Skills() {
                     style={{ background: j === 0 ? 'var(--accent)' : 'var(--border)' }} />
                 ))}
               </div>
+            </TiltCard>
             </motion.div>
           ))}
         </div>
