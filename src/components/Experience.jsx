@@ -4,7 +4,7 @@ import { useRef } from 'react'
 
 const experiences = [
   {
-    period: 'Juin 2022 – Aujourd\'hui',
+    period: 'Juin 2023 – Aujourd\'hui',
     role: 'IT Support / Assistant Admin Systèmes & Réseaux',
     company: 'Ivory Cocoa Products',
     location: 'San Pedro, Côte d\'Ivoire',
@@ -20,7 +20,7 @@ const experiences = [
     ],
   },
   {
-    period: 'Nov 2021 – Juin 2022',
+    period: 'Sept 2022 – Juin 2023',
     role: 'Stage Perfectionnement – Assistant Admin Systèmes & Réseaux',
     company: 'Ivory Cocoa Products',
     location: 'San Pedro, Côte d\'Ivoire',
@@ -28,6 +28,17 @@ const experiences = [
     tasks: [
       'Supervision des infrastructures IT (systèmes & réseaux)',
       'Gestion et configuration des serveurs, pare-feu et équipements réseaux',
+    ],
+  },
+  {
+    period: 'Sept 2020 – Juil 2021',
+    role: 'Technicien Informatique & Assistant Gestion de Stock',
+    company: 'Nouvelle Pharmacie de Santé Publique (NPSP)',
+    location: 'Boulevard de Marseille, Abidjan, Côte d\'Ivoire',
+    type: 'Contrat',
+    tasks: [
+      'Négocier, gérer les commandes et la prise de rendez-vous avec les clients',
+      'Vérifier la recevabilité des produits et des réclamations du client',
     ],
   },
   {
@@ -41,17 +52,6 @@ const experiences = [
       'Expertise conseil auprès des équipes systèmes',
       'Maintenance des systèmes et création d\'applications',
       'Support technique pour le déploiement d\'équipements',
-    ],
-  },
-  {
-    period: 'Sept 2018 – Juil 2019',
-    role: 'Technicien Informatique & Gestion de stock',
-    company: 'Boulevard de Marseille',
-    location: 'Abidjan, Côte d\'Ivoire',
-    type: 'Contrat',
-    tasks: [
-      'Vérification de la recevabilité des produits',
-      'Négociation et gestion des commandes clients',
     ],
   },
 ]

@@ -33,11 +33,11 @@
    THÈME LIGHT — Blanc + Saumon + Olive
 ═══════════════════════════════════════ */
 [data-theme="light"] {
-  --bg-base:       #FAF7F4;
-  --bg-card:       #FFFFFF;
-  --bg-card2:      #F3EDE8;
+  --bg-base:       transparent;
+  --bg-card:       rgba(255,255,255,0.82);
+  --bg-card2:      rgba(243,237,232,0.80);
   --bg-hover:      rgba(208,106,80,0.07);
-  --border:        rgba(208,106,80,0.25);
+  --border:        rgba(208,106,80,0.22);
   --border-hover:  rgba(208,106,80,0.55);
 
   --accent:        #D06A50;   /* saumon */
@@ -120,6 +120,16 @@ h1, h2, h3, h4 {
 .section-sep {
   border-top: 1px solid transparent;
   background: linear-gradient(to right, transparent, var(--separator), transparent) border-box;
+}
+
+/* Animations soleil */
+@keyframes sunSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes sunSpinReverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
 }
 
 /* Scrollbar */

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
+import CVGenerator, { ATSButton } from './CVGenerator'
 
 const links = [
   { label: 'Accueil', href: '#hero' },
@@ -72,6 +73,9 @@ export default function Navbar() {
           >
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>
+
+          <ATSButton />
+          <CVGenerator />
 
           {/* CTA */}
           <a href="#contact" className="btn-primary text-sm">
